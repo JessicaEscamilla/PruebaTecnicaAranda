@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AgregarNegocioDI();
-builder.Services.AgregarRepositorioDI();
+builder.Services.AgregarRepositorioDI(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
