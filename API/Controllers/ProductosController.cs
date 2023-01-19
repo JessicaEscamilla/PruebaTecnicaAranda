@@ -17,9 +17,9 @@ namespace API.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Obtener(string? search, string? orderBy, int? page, int? take)
+        public async Task<IActionResult> Obtener(string? busqueda, string? ordenarPor, int? pagina, int? tamanioPagina)
         {
-            var productos = await _productoServicio.ObtenerProductos(search, orderBy, page, take);
+            var productos = await _productoServicio.ObtenerProductos(busqueda, ordenarPor, pagina, tamanioPagina);
             return Ok(productos);
         }
 

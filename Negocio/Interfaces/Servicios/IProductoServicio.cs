@@ -1,4 +1,5 @@
 using Negocio.Entidades;
+using Negocio.ModelosVista;
 
 namespace Negocio.Interfaces.Servicios
 {
@@ -7,7 +8,7 @@ namespace Negocio.Interfaces.Servicios
         Task<Producto?> ActualizarProducto(Producto producto);
         Task<bool> BorrarProducto(int idProducto);
         Task<Producto> CrearProducto(Producto producto);
-        Task<List<Producto>> ObtenerProductos(string? search, string? orderBy, int? page, int? take);
+        Task<ProductosPage> ObtenerProductos(string? busqueda, string? ordenarPor, int? pagina, int? tamanioPagina);
 
     }
 }
