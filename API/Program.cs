@@ -1,3 +1,4 @@
+using API.Middleware;
 using Negocio;
 using Repositorio;
 
@@ -23,6 +24,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<GestionExcepcionesMiddleware>();
 
 app.MapControllers();
 
