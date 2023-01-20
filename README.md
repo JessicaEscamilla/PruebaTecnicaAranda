@@ -1,4 +1,4 @@
-# Prueba Tecnica Aranda
+# Prueba Tecnica Aranda Software
 Repositorio desarrollado en visual studio 2022, pre requisitos para instalar el proyecto:
 
 * Visual Studio Community 2022
