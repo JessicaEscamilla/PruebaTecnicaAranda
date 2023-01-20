@@ -19,18 +19,25 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IActionResult> Obtener(string? busqueda, string? ordenarPor, int? pagina, int? tamanioPagina)
         {
-            var productos = await _productoServicio.ObtenerProductos(busqueda, ordenarPor, pagina, tamanioPagina);
+            var productos = await _productoServicio.ObtenerProductos(busqueda?.Trim(), ordenarPor, pagina, tamanioPagina);
             return Ok(productos);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CrearActualizar(Producto producto)
+        public async Task<IActionResult> Crear(Producto producto)
         {
-            Producto? productoCreadoActualizado = producto.Id == 0 
-                ? await _productoServicio.CrearProducto(producto) 
-                : await _productoServicio.ActualizarProducto(producto);
+            var productoCreado = await _productoServicio.CrearProducto(producto);
+            return Created("", productoCreado);
+        }
 
-            return productoCreadoActualizado == null ? NotFound() : Ok(productoCreadoActualizado);
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Actualizar(int id, Producto producto)
+        {
+            if (producto.Id != id) 
+                return BadRequest();
+
+            var productoActualizado = await _productoServicio.ActualizarProducto(producto);
+            return productoActualizado == null ? NotFound() : Ok(productoActualizado);
         }
 
         [HttpDelete("{id}")]

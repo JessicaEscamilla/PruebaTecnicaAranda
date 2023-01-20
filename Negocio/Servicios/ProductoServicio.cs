@@ -50,13 +50,13 @@ namespace Negocio.Servicios
             {
                 productos = productos
                     .Where(x =>
-                        string.Equals(x.Nombre, busqueda, StringComparison.CurrentCultureIgnoreCase) ||
-                        string.Equals(x.Descripcion, busqueda, StringComparison.CurrentCultureIgnoreCase) ||
-                        string.Equals(x.Categoria, busqueda, StringComparison.CurrentCultureIgnoreCase))
+                        x.Nombre.CaseInsensitiveContains(busqueda) ||
+                        (!string.IsNullOrEmpty(x.Descripcion) && x.Descripcion.CaseInsensitiveContains(busqueda)) ||
+                        x.Categoria.CaseInsensitiveContains(busqueda))
                     .ToList();
             }
 
-            switch (ordenarPor)
+            switch (ordenarPor?.ToLower())
             {
                 case "nombre":
                     productos = productos.OrderBy(x => x.Nombre).ToList();
